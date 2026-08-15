@@ -1,0 +1,513 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Find Services — LocalFix
+{% endblock %}
+
+
+{% block content %}
+
+<section class="providers-page">
+
+
+    <!-- ========================================= -->
+    <!-- PAGE HERO -->
+    <!-- ========================================= -->
+
+    <div class="providers-hero">
+
+        <div class="providers-hero-content">
+
+            <span class="section-label">
+                LOCAL PROFESSIONALS
+            </span>
+
+            <h1>
+                Find someone who
+                <span class="gradient-text">
+                    can help.
+                </span>
+            </h1>
+
+            <p>
+                Search trusted professionals by service,
+                name or location.
+            </p>
+
+        </div>
+
+
+        <div class="providers-location">
+
+            <span>
+                📍
+            </span>
+
+            <div>
+
+                <small>
+                    YOUR LOCATION
+                </small>
+
+                <strong>
+                    Jalpaiguri
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- SEARCH BAR -->
+    <!-- ========================================= -->
+
+    <form
+        method="GET"
+        action="{{ url_for('providers_page') }}"
+        class="provider-search"
+    >
+
+        <div class="search-main">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+            <input
+                type="text"
+                name="search"
+                value="{{ search }}"
+                placeholder="Search for a service, provider or location..."
+            >
+
+        </div>
+
+
+        <div class="search-category">
+
+            <select name="category">
+
+                <option value="">
+                    All Services
+                </option>
+
+                <option
+                    value="Electrician"
+                    {% if category == "Electrician" %}
+                    selected
+                    {% endif %}
+                >
+                    ⚡ Electrician
+                </option>
+
+                <option
+                    value="Plumber"
+                    {% if category == "Plumber" %}
+                    selected
+                    {% endif %}
+                >
+                    🔧 Plumber
+                </option>
+
+                <option
+                    value="Computer Repair"
+                    {% if category == "Computer Repair" %}
+                    selected
+                    {% endif %}
+                >
+                    💻 Computer Repair
+                </option>
+
+                <option
+                    value="Tutor"
+                    {% if category == "Tutor" %}
+                    selected
+                    {% endif %}
+                >
+                    📚 Tutor
+                </option>
+
+                <option
+                    value="Mechanic"
+                    {% if category == "Mechanic" %}
+                    selected
+                    {% endif %}
+                >
+                    🚗 Mechanic
+                </option>
+
+                <option
+                    value="Cleaner"
+                    {% if category == "Cleaner" %}
+                    selected
+                    {% endif %}
+                >
+                    🧹 Cleaner
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="search-button"
+        >
+            Search
+        </button>
+
+    </form>
+
+
+    <!-- ========================================= -->
+    <!-- QUICK FILTERS -->
+    <!-- ========================================= -->
+
+    <div class="quick-filters">
+
+        <a
+            href="{{ url_for('providers_page') }}"
+            class="filter-chip {% if not category %}active{% endif %}"
+        >
+            All
+        </a>
+
+
+        <a
+            href="{{ url_for('providers_page', category='Electrician') }}"
+            class="filter-chip {% if category == 'Electrician' %}active{% endif %}"
+        >
+            ⚡ Electrician
+        </a>
+
+
+        <a
+            href="{{ url_for('providers_page', category='Plumber') }}"
+            class="filter-chip {% if category == 'Plumber' %}active{% endif %}"
+        >
+            🔧 Plumber
+        </a>
+
+
+        <a
+            href="{{ url_for('providers_page', category='Computer Repair') }}"
+            class="filter-chip {% if category == 'Computer Repair' %}active{% endif %}"
+        >
+            💻 Computer
+        </a>
+
+
+        <a
+            href="{{ url_for('providers_page', category='Tutor') }}"
+            class="filter-chip {% if category == 'Tutor' %}active{% endif %}"
+        >
+            📚 Tutor
+        </a>
+
+
+        <a
+            href="{{ url_for('providers_page', category='Mechanic') }}"
+            class="filter-chip {% if category == 'Mechanic' %}active{% endif %}"
+        >
+            🚗 Mechanic
+        </a>
+
+
+        <a
+            href="{{ url_for('providers_page', category='Cleaner') }}"
+            class="filter-chip {% if category == 'Cleaner' %}active{% endif %}"
+        >
+            🧹 Cleaner
+        </a>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- RESULTS HEADER -->
+    <!-- ========================================= -->
+
+    <div class="results-header">
+
+        <div>
+
+            <span class="results-count">
+                {{ providers|length }}
+                professionals found
+            </span>
+
+            {% if search %}
+
+                <span class="results-for">
+                    for "{{ search }}"
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="sort-control">
+
+            <span>
+                Sort by
+            </span>
+
+            <strong>
+                Rating
+            </strong>
+
+            <span>
+                ▾
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- PROVIDER GRID -->
+    <!-- ========================================= -->
+
+    <div class="restaurant-style-grid">
+
+
+        {% for provider in providers %}
+
+
+        <article class="service-provider-card">
+
+
+            <!-- IMAGE AREA -->
+
+            <a
+                href="{{ url_for('provider', provider_id=provider._id) }}"
+                class="provider-image"
+            >
+
+                <!-- We can replace these emoji placeholders
+                     with actual provider images later. -->
+
+                {% if provider.service == "Electrician" %}
+
+                    <div class="provider-image-placeholder electrician-bg">
+                        ⚡
+                    </div>
+
+                {% elif provider.service == "Plumber" %}
+
+                    <div class="provider-image-placeholder plumber-bg">
+                        🔧
+                    </div>
+
+                {% elif provider.service == "Computer Repair" %}
+
+                    <div class="provider-image-placeholder computer-bg">
+                        💻
+                    </div>
+
+                {% elif provider.service == "Tutor" %}
+
+                    <div class="provider-image-placeholder tutor-bg">
+                        📚
+                    </div>
+
+                {% elif provider.service == "Mechanic" %}
+
+                    <div class="provider-image-placeholder mechanic-bg">
+                        🚗
+                    </div>
+
+                {% else %}
+
+                    <div class="provider-image-placeholder cleaner-bg">
+                        🧹
+                    </div>
+
+                {% endif %}
+
+
+                <!-- RATING -->
+
+                <div class="image-rating">
+
+                    <span>
+                        ★
+                    </span>
+
+                    {{ provider.rating }}
+
+                </div>
+
+
+                <!-- VERIFIED -->
+
+                <div class="verified-badge">
+
+                    ✓ Verified
+
+                </div>
+
+            </a>
+
+
+            <!-- CARD CONTENT -->
+
+            <div class="provider-card-content">
+
+
+                <div class="provider-title-row">
+
+                    <div>
+
+                        <span class="provider-category">
+                            {{ provider.service }}
+                        </span>
+
+                        <h2>
+                            {{ provider.name }}
+                        </h2>
+
+                    </div>
+
+
+                    <span class="provider-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+
+                <p class="provider-description">
+
+                    {{ provider.description }}
+
+                </p>
+
+
+                <div class="provider-details">
+
+
+                    <div class="provider-detail">
+
+                        <span class="detail-icon">
+                            📍
+                        </span>
+
+                        <span>
+                            {{ provider.location }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="provider-detail">
+
+                        <span class="detail-icon">
+                            ₹
+                        </span>
+
+                        <span>
+                            Starting from ₹{{ provider.price }}
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="provider-card-footer">
+
+
+                    <div class="availability">
+
+                        <span class="online-dot"></span>
+
+                        Available for booking
+
+                    </div>
+
+
+                    <a
+                        href="{{ url_for('provider', provider_id=provider._id) }}"
+                        class="view-provider"
+                    >
+                        View Details
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </article>
+
+
+        {% else %}
+
+
+        <!-- ========================================= -->
+        <!-- NO RESULTS -->
+        <!-- ========================================= -->
+
+        <div class="no-results">
+
+            <div class="no-results-icon">
+                ⌕
+            </div>
+
+            <h2>
+                No professionals found
+            </h2>
+
+            <p>
+                We couldn't find anyone matching your search.
+                Try another service or search term.
+            </p>
+
+            <a
+                href="{{ url_for('providers_page') }}"
+                class="btn btn-primary"
+            >
+                View All Providers
+            </a>
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- BOTTOM MESSAGE -->
+    <!-- ========================================= -->
+
+    {% if providers %}
+
+    <div class="provider-bottom-note">
+
+        <span>
+            ✦
+        </span>
+
+        Showing trusted professionals available
+        through LocalFix.
+
+    </div>
+
+    {% endif %}
+
+
+</section>
+
+{% endblock %}

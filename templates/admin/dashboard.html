@@ -1,0 +1,584 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Admin Dashboard — LocalFix
+{% endblock %}
+
+
+{% block content %}
+
+<section class="admin-dashboard section-container">
+
+
+    <!-- ========================================= -->
+    <!-- HEADER -->
+    <!-- ========================================= -->
+
+    <div class="admin-header">
+
+        <div>
+
+            <span class="section-label">
+                ADMIN CONTROL CENTER
+            </span>
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <p>
+                Manage your service marketplace.
+            </p>
+
+        </div>
+
+
+        <div class="admin-live-status">
+
+            <span></span>
+
+            System Live
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- STATS -->
+    <!-- ========================================= -->
+
+    <div class="admin-stats">
+
+
+        <div class="admin-stat-card">
+
+            <div class="admin-stat-top">
+
+                <span>
+                    TOTAL PROVIDERS
+                </span>
+
+                <div class="admin-stat-icon purple">
+                    ◉
+                </div>
+
+            </div>
+
+            <strong>
+                {{ providers|length }}
+            </strong>
+
+            <small>
+                Professionals listed
+            </small>
+
+        </div>
+
+
+        <div class="admin-stat-card">
+
+            <div class="admin-stat-top">
+
+                <span>
+                    TOTAL BOOKINGS
+                </span>
+
+                <div class="admin-stat-icon cyan">
+                    ◷
+                </div>
+
+            </div>
+
+            <strong>
+                {{ bookings|length }}
+            </strong>
+
+            <small>
+                Service requests
+            </small>
+
+        </div>
+
+
+        <div class="admin-stat-card">
+
+            <div class="admin-stat-top">
+
+                <span>
+                    PENDING
+                </span>
+
+                <div class="admin-stat-icon yellow">
+                    !
+                </div>
+
+            </div>
+
+            <strong>
+                {{ bookings|selectattr("status", "equalto", "Pending")|list|length }}
+            </strong>
+
+            <small>
+                Need attention
+            </small>
+
+        </div>
+
+
+        <div class="admin-stat-card">
+
+            <div class="admin-stat-top">
+
+                <span>
+                    COMPLETED
+                </span>
+
+                <div class="admin-stat-icon green">
+                    ✓
+                </div>
+
+            </div>
+
+            <strong>
+                {{ bookings|selectattr("status", "equalto", "Completed")|list|length }}
+            </strong>
+
+            <small>
+                Successfully completed
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- MAIN ADMIN GRID -->
+    <!-- ========================================= -->
+
+    <div class="admin-main-grid">
+
+
+        <!-- ========================================= -->
+        <!-- ADD PROVIDER -->
+        <!-- ========================================= -->
+
+        <div class="admin-panel">
+
+            <div class="admin-panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        NEW PROFESSIONAL
+                    </span>
+
+                    <h2>
+                        Add provider
+                    </h2>
+
+                </div>
+
+                <div class="panel-icon">
+                    +
+                </div>
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="{{ url_for('add_provider') }}"
+                class="admin-form"
+            >
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Provider Name
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="e.g. Rahul Electronics"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Service
+                        </label>
+
+                        <input
+                            type="text"
+                            name="service"
+                            placeholder="e.g. Electrician"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            name="location"
+                            placeholder="Jalpaiguri"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Starting Price
+                        </label>
+
+                        <input
+                            type="number"
+                            name="price"
+                            placeholder="300"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="text"
+                        name="phone"
+                        placeholder="9876543210"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        name="description"
+                        rows="4"
+                        placeholder="Describe the services offered..."
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary full-width"
+                >
+
+                    Add Provider
+
+                    <span>
+                        +
+                    </span>
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- PROVIDERS -->
+        <!-- ========================================= -->
+
+        <div class="admin-panel">
+
+            <div class="admin-panel-header">
+
+                <div>
+
+                    <span class="section-label">
+                        PROFESSIONALS
+                    </span>
+
+                    <h2>
+                        Providers
+                    </h2>
+
+                </div>
+
+                <span class="panel-count">
+                    {{ providers|length }}
+                </span>
+
+            </div>
+
+
+            <div class="admin-provider-list">
+
+
+                {% for provider in providers %}
+
+
+                <div class="admin-provider-item">
+
+
+                    <div class="admin-provider-avatar">
+
+                        {{ provider.name[0]|upper }}
+
+                    </div>
+
+
+                    <div class="admin-provider-info">
+
+                        <strong>
+                            {{ provider.name }}
+                        </strong>
+
+                        <span>
+                            {{ provider.service }}
+                            ·
+                            {{ provider.location }}
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="{{ url_for('delete_provider', provider_id=provider._id) }}"
+                        class="delete-button"
+                        onclick="return confirm('Delete this provider?')"
+                    >
+
+                        ×
+
+                    </a>
+
+                </div>
+
+
+                {% else %}
+
+
+                <div class="admin-empty">
+
+                    No providers yet.
+
+                </div>
+
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- BOOKINGS -->
+    <!-- ========================================= -->
+
+    <div class="admin-bookings-panel">
+
+
+        <div class="admin-panel-header">
+
+            <div>
+
+                <span class="section-label">
+                    BOOKING REQUESTS
+                </span>
+
+                <h2>
+                    Recent bookings
+                </h2>
+
+            </div>
+
+            <span class="panel-count">
+                {{ bookings|length }}
+            </span>
+
+        </div>
+
+
+        <div class="admin-bookings-list">
+
+
+            {% for booking in bookings %}
+
+
+            <div class="admin-booking-item">
+
+
+                <div class="admin-booking-icon">
+
+                    {% if booking.service == "Electrician" %}
+                        ⚡
+                    {% elif booking.service == "Plumber" %}
+                        🔧
+                    {% elif booking.service == "Computer Repair" %}
+                        💻
+                    {% elif booking.service == "Tutor" %}
+                        📚
+                    {% elif booking.service == "Mechanic" %}
+                        🚗
+                    {% else %}
+                        🧹
+                    {% endif %}
+
+                </div>
+
+
+                <div class="admin-booking-info">
+
+                    <span class="booking-service">
+                        {{ booking.service }}
+                    </span>
+
+                    <strong>
+                        {{ booking.provider_name }}
+                    </strong>
+
+                    <small>
+                        Requested by {{ booking.user_name }}
+                    </small>
+
+                </div>
+
+
+                <div class="admin-booking-date">
+
+                    <span>
+                        📅
+                        {{ booking.date }}
+                    </span>
+
+                    <span>
+                        ◷
+                        {{ booking.time }}
+                    </span>
+
+                </div>
+
+
+                <div class="admin-booking-status">
+
+                    <span
+                        class="booking-status status-{{ booking.status|lower }}"
+                    >
+                        {{ booking.status }}
+                    </span>
+
+                </div>
+
+
+                <div class="admin-booking-actions">
+
+
+                    {% if booking.status == "Pending" %}
+
+                    <a
+                        href="{{ url_for('change_booking_status', booking_id=booking._id, status='Confirmed') }}"
+                        class="action-confirm"
+                    >
+                        Confirm
+                    </a>
+
+                    {% endif %}
+
+
+                    {% if booking.status == "Confirmed" %}
+
+                    <a
+                        href="{{ url_for('change_booking_status', booking_id=booking._id, status='Completed') }}"
+                        class="action-complete"
+                    >
+                        Complete
+                    </a>
+
+                    {% endif %}
+
+
+                    {% if booking.status != "Cancelled" and booking.status != "Completed" %}
+
+                    <a
+                        href="{{ url_for('change_booking_status', booking_id=booking._id, status='Cancelled') }}"
+                        class="action-cancel"
+                    >
+                        Cancel
+                    </a>
+
+                    {% endif %}
+
+
+                </div>
+
+            </div>
+
+
+            {% else %}
+
+
+            <div class="admin-empty large">
+
+                <div>
+                    ◷
+                </div>
+
+                <h3>
+                    No booking requests yet.
+                </h3>
+
+                <p>
+                    New customer bookings will appear here.
+
+                </p>
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+
+
+</section>
+
+{% endblock %}

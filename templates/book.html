@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Book {{ provider.name }} — LocalFix
+{% endblock %}
+
+
+{% block content %}
+
+<section class="booking-page">
+
+
+    <div class="booking-layout">
+
+
+        <!-- ========================================= -->
+        <!-- LEFT SUMMARY -->
+        <!-- ========================================= -->
+
+        <div class="booking-summary">
+
+
+            <a
+                href="{{ url_for('provider', provider_id=provider._id) }}"
+                class="back-link"
+            >
+                ← Back to profile
+            </a>
+
+
+            <span class="section-label">
+                BOOK A SERVICE
+            </span>
+
+
+            <h1>
+                Almost there.
+            </h1>
+
+
+            <p class="booking-intro">
+                Choose when and where you need
+                {{ provider.name }}.
+            </p>
+
+
+            <div class="booking-provider-card">
+
+
+                <div class="booking-provider-image">
+
+                    {% if provider.service == "Electrician" %}
+                        ⚡
+                    {% elif provider.service == "Plumber" %}
+                        🔧
+                    {% elif provider.service == "Computer Repair" %}
+                        💻
+                    {% elif provider.service == "Tutor" %}
+                        📚
+                    {% elif provider.service == "Mechanic" %}
+                        🚗
+                    {% else %}
+                        🧹
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        {{ provider.service }}
+                    </span>
+
+                    <h3>
+                        {{ provider.name }}
+                    </h3>
+
+                    <p>
+                        ⭐ {{ provider.rating }}
+                        · {{ provider.location }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="booking-note">
+
+                <div class="booking-note-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        No payment required
+                    </strong>
+
+                    <p>
+                        This is only a booking request.
+                        The provider can confirm the appointment
+                        through the system.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- BOOKING FORM -->
+        <!-- ========================================= -->
+
+        <div class="booking-form-card">
+
+
+            <div class="form-card-header">
+
+                <span class="section-label">
+                    YOUR DETAILS
+                </span>
+
+                <h2>
+                    Schedule your service
+                </h2>
+
+                <p>
+                    Tell us when and where you'd like
+                    the service.
+                </p>
+
+            </div>
+
+
+            <form
+                method="POST"
+                class="booking-form"
+            >
+
+
+                <!-- DATE & TIME -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="date">
+                            Preferred Date
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                📅
+                            </span>
+
+                            <input
+                                type="date"
+                                id="date"
+                                name="date"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="time">
+                            Preferred Time
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ◷
+                            </span>
+
+                            <input
+                                type="time"
+                                id="time"
+                                name="time"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="form-group">
+
+                    <label for="address">
+                        Service Address
+                    </label>
+
+                    <div class="textarea-wrapper">
+
+                        <span class="textarea-icon">
+                            📍
+                        </span>
+
+                        <textarea
+                            id="address"
+                            name="address"
+                            rows="4"
+                            placeholder="Enter the address where the service is required..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NOTE -->
+
+                <div class="form-group">
+
+                    <label for="note">
+
+                        Additional Details
+
+                        <span>
+                            Optional
+                        </span>
+
+                    </label>
+
+                    <div class="textarea-wrapper">
+
+                        <span class="textarea-icon">
+                            ✎
+                        </span>
+
+                        <textarea
+                            id="note"
+                            name="note"
+                            rows="4"
+                            placeholder="Tell the professional what you need help with..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUMMARY -->
+
+                <div class="booking-total">
+
+                    <div>
+
+                        <span>
+                            Starting service price
+                        </span>
+
+                        <small>
+                            Final price may depend on the work.
+                        </small>
+
+                    </div>
+
+                    <strong>
+                        ₹{{ provider.price }}
+                    </strong>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-large full-width"
+                >
+
+                    Send Booking Request
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+                <p class="form-disclaimer">
+
+                    By submitting this request,
+                    you agree to the LocalFix terms.
+
+                </p>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

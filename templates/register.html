@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Create Account — LocalFix
+{% endblock %}
+
+
+{% block content %}
+
+<section class="auth-section">
+
+
+    <div class="auth-layout">
+
+
+        <!-- LEFT -->
+
+        <div class="auth-info">
+
+            <span class="section-label">
+                JOIN LOCALFIX
+            </span>
+
+            <h1>
+                Your local
+                <span class="gradient-text">
+                    help network.
+                </span>
+            </h1>
+
+            <p>
+                Create your free account and start
+                discovering reliable professionals
+                around you.
+            </p>
+
+
+            <div class="register-stat-card">
+
+                <div class="stat-avatars">
+
+                    <span>R</span>
+                    <span>A</span>
+                    <span>P</span>
+                    <span>+</span>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        People are getting things done.
+                    </strong>
+
+                    <p>
+                        Join LocalFix today.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <div class="auth-card">
+
+            <div class="auth-card-top">
+
+                <div class="auth-logo">
+                    ✦
+                </div>
+
+                <span>
+                    LOCALFIX
+                </span>
+
+            </div>
+
+
+            <h2>
+                Create account
+            </h2>
+
+            <p class="auth-subtitle">
+                It only takes a minute.
+            </p>
+
+
+            <form
+                method="POST"
+                class="auth-form"
+            >
+
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            ◉
+                        </span>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Your full name"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            @
+                        </span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            •
+                        </span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            minlength="6"
+                            required
+                        >
+
+                    </div>
+
+                    <small class="field-help">
+                        Use at least 6 characters.
+                    </small>
+
+                </div>
+
+
+                <div class="terms-row">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                    >
+
+                    <label for="terms">
+
+                        I agree to the
+                        <a href="#">
+                            terms of service
+                        </a>
+
+                        and
+
+                        <a href="#">
+                            privacy policy
+                        </a>.
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-large full-width"
+                >
+
+                    Create Account
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+            <p class="auth-switch">
+
+                Already have an account?
+
+                <a href="{{ url_for('login') }}">
+                    Sign in
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

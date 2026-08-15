@@ -1,0 +1,514 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+{{ provider.name }} — LocalFix
+{% endblock %}
+
+
+{% block content %}
+
+<section class="provider-profile-page">
+
+
+    <!-- ========================================= -->
+    <!-- BACK -->
+    <!-- ========================================= -->
+
+    <div class="profile-container">
+
+        <a
+            href="{{ url_for('providers_page') }}"
+            class="back-link"
+        >
+            ← Back to professionals
+        </a>
+
+
+        <!-- ========================================= -->
+        <!-- PROFILE HEADER -->
+        <!-- ========================================= -->
+
+        <div class="provider-profile-header">
+
+
+            <div class="profile-visual">
+
+                {% if provider.service == "Electrician" %}
+
+                    <div class="profile-image electrician-bg">
+                        ⚡
+                    </div>
+
+                {% elif provider.service == "Plumber" %}
+
+                    <div class="profile-image plumber-bg">
+                        🔧
+                    </div>
+
+                {% elif provider.service == "Computer Repair" %}
+
+                    <div class="profile-image computer-bg">
+                        💻
+                    </div>
+
+                {% elif provider.service == "Tutor" %}
+
+                    <div class="profile-image tutor-bg">
+                        📚
+                    </div>
+
+                {% elif provider.service == "Mechanic" %}
+
+                    <div class="profile-image mechanic-bg">
+                        🚗
+                    </div>
+
+                {% else %}
+
+                    <div class="profile-image cleaner-bg">
+                        🧹
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="profile-header-info">
+
+                <div class="verified-line">
+
+                    <span class="verified-check">
+                        ✓
+                    </span>
+
+                    Verified Professional
+
+                </div>
+
+
+                <span class="profile-category">
+                    {{ provider.service }}
+                </span>
+
+
+                <h1>
+                    {{ provider.name }}
+                </h1>
+
+
+                <div class="profile-rating-row">
+
+                    <span class="large-rating">
+                        ★ {{ provider.rating }}
+                    </span>
+
+                    <span>
+                        Excellent
+                    </span>
+
+                    <span class="dot-separator">
+                        •
+                    </span>
+
+                    <span>
+                        LocalFix Professional
+                    </span>
+
+                </div>
+
+
+                <div class="profile-location">
+
+                    📍
+
+                    {{ provider.location }}
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-price-card">
+
+                <span>
+                    STARTING FROM
+                </span>
+
+                <strong>
+                    ₹{{ provider.price }}
+                </strong>
+
+                <small>
+                    Service visit
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- PROFILE BODY -->
+        <!-- ========================================= -->
+
+        <div class="profile-body">
+
+
+            <!-- LEFT -->
+
+            <div class="profile-main">
+
+
+                <div class="profile-content-card">
+
+                    <span class="section-label">
+                        ABOUT
+                    </span>
+
+                    <h2>
+                        Professional service you can count on.
+                    </h2>
+
+                    <p>
+                        {{ provider.description }}
+                    </p>
+
+                    <p>
+                        Our professionals are available for
+                        local service requests. Choose a date
+                        and time that works for you and send
+                        a booking request.
+                    </p>
+
+                </div>
+
+
+                <!-- SERVICES -->
+
+                <div class="profile-content-card">
+
+                    <span class="section-label">
+                        SERVICE DETAILS
+                    </span>
+
+                    <h2>
+                        What they can help with
+                    </h2>
+
+
+                    <div class="service-feature-grid">
+
+                        <div class="service-feature">
+
+                            <span>
+                                ✓
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Professional Service
+                                </strong>
+
+                                <small>
+                                    Experienced local professional
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-feature">
+
+                            <span>
+                                ✓
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Local Availability
+                                </strong>
+
+                                <small>
+                                    Serving {{ provider.location }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-feature">
+
+                            <span>
+                                ✓
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Transparent Pricing
+                                </strong>
+
+                                <small>
+                                    Starting from ₹{{ provider.price }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-feature">
+
+                            <span>
+                                ✓
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Easy Booking
+                                </strong>
+
+                                <small>
+                                    Request a convenient time
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REVIEWS -->
+
+                <div class="profile-content-card">
+
+                    <div class="review-heading">
+
+                        <div>
+
+                            <span class="section-label">
+                                REVIEWS
+                            </span>
+
+                            <h2>
+                                What customers say
+                            </h2>
+
+                        </div>
+
+
+                        <div class="review-summary">
+
+                            <strong>
+                                ★ {{ provider.rating }}
+                            </strong>
+
+                            <span>
+                                Excellent
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="review-card">
+
+                        <div class="review-avatar">
+                            A
+                        </div>
+
+                        <div>
+
+                            <div class="review-top">
+
+                                <strong>
+                                    Amit
+                                </strong>
+
+                                <span>
+                                    ★★★★★
+                                </span>
+
+                            </div>
+
+                            <small>
+                                Recent customer
+                            </small>
+
+                            <p>
+                                Very good service. Professional,
+                                quick and easy to deal with.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="review-card">
+
+                        <div class="review-avatar purple">
+                            R
+                        </div>
+
+                        <div>
+
+                            <div class="review-top">
+
+                                <strong>
+                                    Riya
+                                </strong>
+
+                                <span>
+                                    ★★★★★
+                                </span>
+
+                            </div>
+
+                            <small>
+                                Recent customer
+                            </small>
+
+                            <p>
+                                Arrived on time and completed
+                                the work properly.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <aside class="profile-sidebar">
+
+
+                <div class="booking-sidebar-card">
+
+                    <div class="sidebar-label">
+                        READY TO BOOK?
+                    </div>
+
+                    <h2>
+                        Get it sorted.
+                    </h2>
+
+                    <p>
+                        Choose your preferred date and
+                        time and send a request.
+                    </p>
+
+
+                    <div class="sidebar-price">
+
+                        <span>
+                            Starting from
+                        </span>
+
+                        <strong>
+                            ₹{{ provider.price }}
+                        </strong>
+
+                    </div>
+
+
+                    <a
+                        href="{{ url_for('book', provider_id=provider._id) }}"
+                        class="btn btn-primary btn-large full-width"
+                    >
+                        Book Service
+                        <span>→</span>
+                    </a>
+
+
+                    <div class="secure-note">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        No payment required now.
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-card">
+
+                    <span class="section-label">
+                        CONTACT
+                    </span>
+
+                    <h3>
+                        Need to ask something?
+                    </h3>
+
+                    <div class="contact-item">
+
+                        <span>
+                            📞
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Phone
+                            </small>
+
+                            <strong>
+                                {{ provider.phone }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-item">
+
+                        <span>
+                            📍
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Service Area
+                            </small>
+
+                            <strong>
+                                {{ provider.location }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+My Bookings — LocalFix
+{% endblock %}
+
+
+{% block content %}
+
+<section class="bookings-page section-container">
+
+
+    <!-- ========================================= -->
+    <!-- HEADER -->
+    <!-- ========================================= -->
+
+    <div class="bookings-header">
+
+        <div>
+
+            <span class="section-label">
+                YOUR ACTIVITY
+            </span>
+
+            <h1>
+                My Bookings
+            </h1>
+
+            <p>
+                Keep track of all your service requests
+                in one place.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('providers_page') }}"
+            class="btn btn-primary"
+        >
+
+            Find Another Service
+
+            <span>
+                →
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- BOOKING STATS -->
+    <!-- ========================================= -->
+
+    <div class="booking-stats">
+
+
+        <div class="booking-stat-card">
+
+            <span class="stat-icon">
+                ◷
+            </span>
+
+            <div>
+
+                <strong>
+                    {{ bookings|length }}
+                </strong>
+
+                <span>
+                    Total Bookings
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="booking-stat-card">
+
+            <span class="stat-icon green">
+                ✓
+            </span>
+
+            <div>
+
+                <strong>
+                    {{ bookings|selectattr("status", "equalto", "Confirmed")|list|length }}
+                </strong>
+
+                <span>
+                    Confirmed
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="booking-stat-card">
+
+            <span class="stat-icon yellow">
+                ◷
+            </span>
+
+            <div>
+
+                <strong>
+                    {{ bookings|selectattr("status", "equalto", "Pending")|list|length }}
+                </strong>
+
+                <span>
+                    Pending
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- BOOKING LIST -->
+    <!-- ========================================= -->
+
+    <div class="bookings-section">
+
+
+        <div class="booking-list-header">
+
+            <h2>
+                Recent bookings
+            </h2>
+
+            <span>
+                {{ bookings|length }} requests
+            </span>
+
+        </div>
+
+
+        {% for booking in bookings %}
+
+
+        <article class="booking-item">
+
+
+            <!-- ICON -->
+
+            <div class="booking-item-icon">
+
+                {% if booking.service == "Electrician" %}
+                    ⚡
+                {% elif booking.service == "Plumber" %}
+                    🔧
+                {% elif booking.service == "Computer Repair" %}
+                    💻
+                {% elif booking.service == "Tutor" %}
+                    📚
+                {% elif booking.service == "Mechanic" %}
+                    🚗
+                {% else %}
+                    🧹
+                {% endif %}
+
+            </div>
+
+
+            <!-- MAIN -->
+
+            <div class="booking-item-main">
+
+                <div class="booking-service-label">
+                    {{ booking.service }}
+                </div>
+
+                <h3>
+                    {{ booking.provider_name }}
+                </h3>
+
+                <div class="booking-meta">
+
+                    <span>
+                        📅 {{ booking.date }}
+                    </span>
+
+                    <span>
+                        ◷ {{ booking.time }}
+                    </span>
+
+                </div>
+
+                <div class="booking-address">
+
+                    📍 {{ booking.address }}
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="booking-item-side">
+
+                <span
+                    class="booking-status status-{{ booking.status|lower }}"
+                >
+
+                    {% if booking.status == "Pending" %}
+                        ◷
+                    {% elif booking.status == "Confirmed" %}
+                        ✓
+                    {% elif booking.status == "Completed" %}
+                        ✓
+                    {% else %}
+                        ×
+                    {% endif %}
+
+                    {{ booking.status }}
+
+                </span>
+
+
+                <span class="booking-price">
+                    Starting from ₹{{ booking.get("price", "—") }}
+                </span>
+
+            </div>
+
+        </article>
+
+
+        {% else %}
+
+
+        <!-- EMPTY STATE -->
+
+        <div class="empty-bookings">
+
+            <div class="empty-booking-icon">
+                ◷
+            </div>
+
+            <h2>
+                No bookings yet.
+            </h2>
+
+            <p>
+                Your service requests will appear here
+                once you make your first booking.
+            </p>
+
+            <a
+                href="{{ url_for('providers_page') }}"
+                class="btn btn-primary"
+            >
+                Find a Professional
+                <span>→</span>
+            </a>
+
+        </div>
+
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

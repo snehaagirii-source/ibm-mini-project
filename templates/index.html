@@ -1,0 +1,652 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+LocalFix — Find Trusted Local Services
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ========================================= -->
+<!-- HERO SECTION -->
+<!-- ========================================= -->
+
+<section class="hero-section">
+
+    <div class="hero-container">
+
+
+        <!-- HERO CONTENT -->
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+
+                <span class="hero-badge-dot"></span>
+
+                LOCAL SERVICES, SIMPLIFIED
+
+            </div>
+
+
+            <h1 class="hero-title">
+
+                Find the right
+
+                <span class="gradient-text">
+                    person
+                </span>
+
+                for the job.
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                From fixing your laptop to repairing
+                your pipes, find trusted local professionals
+                and book a service in just a few clicks.
+
+            </p>
+
+
+            <!-- SEARCH PREVIEW -->
+
+            <div class="hero-search">
+
+                <div class="hero-search-icon">
+                    ⌕
+                </div>
+
+                <div class="hero-search-text">
+
+                    <span>
+                        What service do you need?
+                    </span>
+
+                    <small>
+                        Try "Electrician", "Tutor", "Computer Repair"...
+                    </small>
+
+                </div>
+
+                <a
+                    href="{{ url_for('login') }}"
+                    class="hero-search-button"
+                >
+                    Search
+                </a>
+
+            </div>
+
+
+            <!-- HERO BUTTONS -->
+
+            <div class="hero-actions">
+
+                <a
+                    href="{{ url_for('register') }}"
+                    class="btn btn-primary"
+                >
+
+                    Find a Professional
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="{{ url_for('login') }}"
+                    class="btn btn-secondary"
+                >
+
+                    Explore Services
+
+                </a>
+
+            </div>
+
+
+            <!-- TRUST INFO -->
+
+            <div class="hero-trust">
+
+                <div class="trust-item">
+
+                    <strong>
+                        100+
+                    </strong>
+
+                    <span>
+                        Local Providers
+                    </span>
+
+                </div>
+
+
+                <div class="trust-divider"></div>
+
+
+                <div class="trust-item">
+
+                    <strong>
+                        4.8★
+                    </strong>
+
+                    <span>
+                        Average Rating
+                    </span>
+
+                </div>
+
+
+                <div class="trust-divider"></div>
+
+
+                <div class="trust-item">
+
+                    <strong>
+                        24/7
+                    </strong>
+
+                    <span>
+                        Easy Booking
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- HERO VISUAL -->
+        <!-- ========================================= -->
+
+        <div class="hero-visual">
+
+
+            <div class="hero-glow"></div>
+
+
+            <!-- FLOATING CARD 1 -->
+
+            <div class="floating-card floating-card-one">
+
+                <div class="floating-icon">
+                    ⚡
+                </div>
+
+                <div>
+
+                    <strong>
+                        Electrician
+                    </strong>
+
+                    <span>
+                        Available nearby
+                    </span>
+
+                </div>
+
+                <div class="floating-check">
+                    ✓
+                </div>
+
+            </div>
+
+
+            <!-- MAIN HERO CARD -->
+
+            <div class="hero-provider-card">
+
+                <div class="hero-provider-image">
+
+                    <div class="image-placeholder">
+
+                        💻
+
+                    </div>
+
+
+                    <div class="hero-rating">
+
+                        <span>
+                            ★
+                        </span>
+
+                        4.8
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-provider-content">
+
+                    <span class="provider-category">
+                        COMPUTER REPAIR
+                    </span>
+
+                    <h3>
+                        Rahul Electronics
+                    </h3>
+
+                    <p>
+                        Laptop & PC specialist
+                    </p>
+
+
+                    <div class="hero-provider-meta">
+
+                        <span>
+                            📍 Jalpaiguri
+                        </span>
+
+                        <span>
+                            From ₹300
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FLOATING CARD 2 -->
+
+            <div class="floating-card floating-card-two">
+
+                <div class="floating-icon purple">
+                    ★
+                </div>
+
+                <div>
+
+                    <strong>
+                        4.9 Rating
+                    </strong>
+
+                    <span>
+                        Highly rated professionals
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================= -->
+<!-- POPULAR SERVICES -->
+<!-- ========================================= -->
+
+<section class="services-preview section-container">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-label">
+                EXPLORE
+            </span>
+
+            <h2>
+                What do you need help with?
+            </h2>
+
+            <p>
+                Choose a category and discover professionals
+                ready to help.
+            </p>
+
+        </div>
+
+        <a
+            href="{{ url_for('login') }}"
+            class="section-link"
+        >
+            View all services →
+        </a>
+
+    </div>
+
+
+    <div class="category-grid">
+
+
+        <!-- CATEGORY -->
+
+        <a
+            href="{{ url_for('login') }}"
+            class="category-card"
+        >
+
+            <div class="category-icon electrician">
+                ⚡
+            </div>
+
+            <div class="category-info">
+
+                <h3>
+                    Electrician
+                </h3>
+
+                <p>
+                    Electrical repairs & installation
+                </p>
+
+            </div>
+
+            <span class="category-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('login') }}"
+            class="category-card"
+        >
+
+            <div class="category-icon plumber">
+                🔧
+            </div>
+
+            <div class="category-info">
+
+                <h3>
+                    Plumber
+                </h3>
+
+                <p>
+                    Pipes, taps & home repairs
+                </p>
+
+            </div>
+
+            <span class="category-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('login') }}"
+            class="category-card"
+        >
+
+            <div class="category-icon computer">
+                💻
+            </div>
+
+            <div class="category-info">
+
+                <h3>
+                    Computer Repair
+                </h3>
+
+                <p>
+                    Laptop, PC & software support
+                </p>
+
+            </div>
+
+            <span class="category-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('login') }}"
+            class="category-card"
+        >
+
+            <div class="category-icon tutor">
+                📚
+            </div>
+
+            <div class="category-info">
+
+                <h3>
+                    Tutor
+                </h3>
+
+                <p>
+                    Personal & academic tutoring
+                </p>
+
+            </div>
+
+            <span class="category-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('login') }}"
+            class="category-card"
+        >
+
+            <div class="category-icon mechanic">
+                🚗
+            </div>
+
+            <div class="category-info">
+
+                <h3>
+                    Mechanic
+                </h3>
+
+                <p>
+                    Vehicle service & repairs
+                </p>
+
+            </div>
+
+            <span class="category-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('login') }}"
+            class="category-card"
+        >
+
+            <div class="category-icon cleaner">
+                🧹
+            </div>
+
+            <div class="category-info">
+
+                <h3>
+                    Cleaner
+                </h3>
+
+                <p>
+                    Home & office cleaning
+                </p>
+
+            </div>
+
+            <span class="category-arrow">
+                →
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================= -->
+<!-- HOW IT WORKS -->
+<!-- ========================================= -->
+
+<section class="how-section">
+
+    <div class="section-container">
+
+        <div class="section-heading centered">
+
+            <span class="section-label">
+                SIMPLE PROCESS
+            </span>
+
+            <h2>
+                Get things done in three steps.
+            </h2>
+
+            <p>
+                No complicated process. Just find,
+                book and relax.
+            </p>
+
+        </div>
+
+
+        <div class="steps-grid">
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <div class="step-icon">
+                    ⌕
+                </div>
+
+                <h3>
+                    Find
+                </h3>
+
+                <p>
+                    Search for the service you need
+                    and explore professionals near you.
+                </p>
+
+            </div>
+
+
+            <div class="step-connector"></div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <div class="step-icon">
+                    👤
+                </div>
+
+                <h3>
+                    Choose
+                </h3>
+
+                <p>
+                    Compare ratings, prices and profiles
+                    before choosing your professional.
+                </p>
+
+            </div>
+
+
+            <div class="step-connector"></div>
+
+
+            <div class="step-card">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <div class="step-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Book
+                </h3>
+
+                <p>
+                    Pick a convenient date and time
+                    and send your booking request.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================= -->
+<!-- CTA -->
+<!-- ========================================= -->
+
+<section class="final-cta section-container">
+
+    <div class="cta-card">
+
+        <div class="cta-glow"></div>
+
+        <div class="cta-content">
+
+            <span class="section-label">
+                READY WHEN YOU ARE
+            </span>
+
+            <h2>
+                Your next fix is
+                just a few clicks away.
+            </h2>
+
+            <p>
+                Find a trusted professional
+                and get your task moving.
+            </p>
+
+            <a
+                href="{{ url_for('register') }}"
+                class="btn btn-primary"
+            >
+                Get Started
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -6,8 +6,14 @@ A Flask + MongoDB local service booking platform with a premium neon UI and admi
 Users can discover local service providers such as electricians, plumbers, mechanics, tutors, cleaners, and computer 
 repair professionals, view their profiles, and book services through a simple interface.
 
+
+
 Tech Stack:
+
 Frontend  → HTML, CSS, JavaScript
+
 Backend   → Python, Flask
+
 Database  → MongoDB
+
 UI        → Custom Neon CSS

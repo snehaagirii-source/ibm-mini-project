@@ -13,7 +13,7 @@ app.secret_key = "localfix-secret-key"
 # MONGODB CONNECTION
 # --------------------------------
 
-MONGO_URI = "mongodb+srv://souravsharma7718_db_user:Dy2Z9ZJzYtkwWECR@cluster0.ljpb4nn.mongodb.net/?appName=Cluster0"
+MONGO_URI = ""
 
 client = MongoClient(MONGO_URI)
 
